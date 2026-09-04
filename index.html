@@ -1,106 +1,84 @@
+## `index.html`
+
+```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>LOVE YOU ❤️</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#090609">
+
+    <title>LOVE YOUI ❤️</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Floating hearts -->
-    <div id="heartsContainer"></div>
+    <!-- =====================================
+         YOUTUBE PLAYER
+    ====================================== -->
 
-    <!-- ==============================
-         YOUTUBE MUSIC PLAYER
-    =============================== -->
     <div id="youtubePlayer"></div>
 
-    <!-- Music control -->
-    <button id="musicButton" class="music-button" aria-label="Music">
-        🔇
+
+    <!-- =====================================
+         MUSIC BUTTON
+    ====================================== -->
+
+    <button
+        id="musicButton"
+        class="music-button"
+        type="button"
+        aria-label="تشغيل أو إيقاف الموسيقى"
+    >
+        🎵
     </button>
 
 
-    <!-- ==============================
-         PAGE 1
-    =============================== -->
+    <!-- =====================================
+         FLOATING HEARTS
+    ====================================== -->
+
+    <div id="floatingHearts"></div>
+
+
+    <!-- =====================================
+         WELCOME PAGE
+    ====================================== -->
+
     <main id="welcomePage" class="page active">
 
-        <div class="welcome-content">
+        <div class="background-glow"></div>
 
-            <p class="eyebrow">
-                A LITTLE SOMETHING FOR YOU
-            </p>
+        <section class="welcome-content">
 
-
-            <!-- HEART DRAWING -->
-            <div class="heart-stage">
-
-                <svg
-                    id="heartSvg"
-                    class="heart-svg"
-                    viewBox="0 0 500 470"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-label="Heart"
-                >
-
-                    <!-- Glow -->
-                    <path
-                        class="heart-glow"
-                        d="M250 430
-                           C220 400 65 285 65 145
-                           C65 70 120 35 180 35
-                           C220 35 245 55 250 90
-                           C255 55 280 35 320 35
-                           C380 35 435 70 435 145
-                           C435 285 280 400 250 430 Z"
-                    />
-
-                    <!-- Main drawing line -->
-                    <path
-                        id="heartPath"
-                        class="heart-path"
-                        d="M250 430
-                           C220 400 65 285 65 145
-                           C65 70 120 35 180 35
-                           C220 35 245 55 250 90
-                           C255 55 280 35 320 35
-                           C380 35 435 70 435 145
-                           C435 285 280 400 250 430 Z"
-                    />
-
-                    <!-- Filled heart appears after drawing -->
-                    <path
-                        id="heartFill"
-                        class="heart-fill"
-                        d="M250 430
-                           C220 400 65 285 65 145
-                           C65 70 120 35 180 35
-                           C220 35 245 55 250 90
-                           C255 55 280 35 320 35
-                           C380 35 435 70 435 145
-                           C435 285 280 400 250 430 Z"
-                    />
-
-                </svg>
+            <div class="top-label">
+                ✦ رسالة صغيرة ✦
+            </div>
 
 
-                <!-- Names appear after heart is drawn -->
-                <div id="names" class="names">
+            <!-- HEART -->
 
-                    <span>HAYTAM</span>
+            <div class="heart-container">
 
-                    <div class="plus">+</div>
+                <div class="heart">
+                    <div class="heart-shine"></div>
+                </div>
 
-                    <span>IMAN</span>
+                <div class="names">
+
+                    <span>حيتام</span>
+
+                    <strong>+</strong>
+
+                    <span>إيمان</span>
 
                 </div>
 
@@ -108,340 +86,292 @@
 
 
             <h1>
-                HAYTAM + IMAN
+                عندي ليك مفاجأة ❤️
             </h1>
 
-            <p class="welcome-text">
-                For you, a thousand times over ❤️
+
+            <p class="hint">
+                ضغط على البصمة باش تفتح الهدية
             </p>
 
 
-            <!-- ==============================
-                 FINGERPRINT BUTTON
-            =============================== -->
+            <!-- FINGERPRINT -->
+
             <button
                 id="fingerprintButton"
                 class="fingerprint-button"
-                aria-label="Open gift"
+                type="button"
+                aria-label="فتح الهدية"
             >
 
-                <span class="fingerprint-ring"></span>
+                <div class="fingerprint">
 
-                <svg
-                    class="fingerprint-icon"
-                    viewBox="0 0 100 100"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
+                    <i></i>
+                    <i></i>
+                    <i></i>
 
-                    <path d="M50 18
-                             C30 18 18 32 18 50"
-                          />
-
-                    <path d="M50 28
-                             C37 28 28 37 28 50
-                             C28 62 22 69 19 73"
-                          />
-
-                    <path d="M50 38
-                             C43 38 38 43 38 50
-                             C38 68 34 77 28 84"
-                          />
-
-                    <path d="M50 28
-                             C63 28 72 37 72 50
-                             C72 67 68 77 62 85"
-                          />
-
-                    <path d="M50 38
-                             C57 38 62 43 62 50
-                             C62 68 58 78 52 88"
-                          />
-
-                    <path d="M50 48
-                             C48 48 47 49 47 52
-                             C47 69 45 78 40 88"
-                          />
-
-                    <path d="M50 48
-                             C52 48 53 49 53 52
-                             C53 65 52 73 50 82"
-                          />
-
-                    <path d="M35 22
-                             C25 28 21 37 21 48"
-                          />
-
-                    <path d="M65 22
-                             C75 28 79 37 79 48"
-                          />
-
-                </svg>
-
-                <span class="fingerprint-text">
-                    TOUCH TO OPEN
-                </span>
+                </div>
 
             </button>
 
-        </div>
+
+            <p id="fingerprintText">
+                اضغط هنا
+            </p>
+
+        </section>
 
     </main>
 
 
 
-    <!-- ==============================
-         PAGE 2
-    =============================== -->
+    <!-- =====================================
+         GIFT PAGE
+    ====================================== -->
+
     <main id="giftPage" class="page">
 
-        <div class="gift-content">
+        <div class="gift-background"></div>
 
-            <p class="eyebrow">
-                A SPECIAL GIFT
-            </p>
+        <section class="gift-content">
+
+            <div class="gift-label">
+                ✦ مفاجأة خاصة ✦
+            </div>
+
 
             <h2>
-                هدية
+                هدية 🎁
             </h2>
 
-            <p class="subtitle">
-                For you, Iman ❤️
-            </p>
 
+            <!-- GIFT BOX -->
 
-            <!-- GIFT -->
-            <div
+            <button
                 id="giftBox"
-                class="gift-box-area"
+                class="gift-box"
+                type="button"
+                aria-label="فتح الهدية"
             >
 
-                <div class="gift-box">
+                <div class="box-shadow"></div>
 
-                    <div class="gift-bow">
+                <div class="gift-lid">
 
-                        <span class="bow-left"></span>
-                        <span class="bow-right"></span>
-                        <span class="bow-center"></span>
-
-                    </div>
-
-                    <div class="gift-lid">
-                        <div class="lid-ribbon"></div>
-                    </div>
-
-                    <div class="gift-body">
-
-                        <div class="vertical-ribbon"></div>
-
-                        <div class="horizontal-ribbon"></div>
-
-                    </div>
+                    <div class="ribbon-horizontal"></div>
 
                 </div>
 
-                <p class="open-hint">
-                    TAP THE GIFT 🎁
+                <div class="gift-body">
+
+                    <div class="ribbon-vertical"></div>
+
+                </div>
+
+                <div class="bow">
+
+                    <div class="bow-left"></div>
+
+                    <div class="bow-right"></div>
+
+                    <div class="bow-center"></div>
+
+                </div>
+
+            </button>
+
+
+            <!-- GIFT MESSAGE -->
+
+            <div
+                id="giftMessage"
+                class="gift-message"
+            >
+
+                <h3>
+                    عندي ليك هاد الرسالة ❤️
+                </h3>
+
+                <p>
+                    بعض الأشخاص كيدخلو لحياتنا
+                    وكيخليو فيها واحد الأثر الجميل...
+                    وهدي غير حاجة صغيرة باش نقول:
+                    <br>
+
+                    <strong>
+                        شكراً لأنك شخص مميز.
+                    </strong>
                 </p>
 
             </div>
 
 
-            <!-- MESSAGE -->
-            <section
-                id="messageSection"
-                class="message-section"
-            >
 
-                <div class="message-card">
-
-                    <div class="message-icon">
-                        ♡
-                    </div>
-
-                    <h3>
-                        To Iman
-                    </h3>
-
-                    <p>
-                       إيمان، ما عرفتاش واش الكلمات تقدر توصف شحال كنعزك، ولكن بغيتك تعرفي واحد الحاجة من قلبي: أنا كنحبك. ❤️
-ماشي غير حيث كتفرحيني، ولكن حيث وليتي جزء جميل من حياتي، ووجودك ولى عندو معنى كبير عندي.
-معاك كنحس براسي مرتاح، وفرحان، وكنبغي ديما نشوفك بخير ومبتسمة.
-يمكن ما كنقولهاش ليك كل مرة، ولكن الحقيقة هي أن قلبي اختارك، وكنتمنا نبقى ديما شخص يقدّر قيمتك ويحافظ على هاد المشاعر اللي بيناتنا.
-إيمان، كنحبك بصدق، وهاد الاعتراف جاي من قلبي ليك. ❤️                        
-                   
-                    </p>
-
-                    <p class="signature">
-                        — HAYTAM
-                    </p>
-
-                </div>
-
-            </section>
-
-
-            <!-- ==============================
+            <!-- =================================
                  GALLERY
-            =============================== -->
+            ================================== -->
+
             <section class="gallery-section">
 
-                <p class="eyebrow">
-                    OUR MEMORIES
-                </p>
+                <div class="gallery-header">
 
-                <h3 class="gallery-title">
-                    أجمل الذكريات
-                </h3>
+                    <span>
+                        ✦ ذكريات ✦
+                    </span>
+
+                    <h3>
+                        صور خاصة ❤️
+                    </h3>
+
+                </div>
 
 
                 <div class="gallery">
 
                     <button
                         id="prevButton"
-                        class="gallery-arrow left"
+                        class="gallery-arrow prev"
+                        type="button"
+                        aria-label="الصورة السابقة"
                     >
-                        ‹
+                        ❮
                     </button>
 
 
-                    <div class="main-photo-wrapper">
+                    <div class="main-image-wrapper">
 
                         <img
-                            id="mainPhoto"
+                            id="mainImage"
+                            class="main-image"
                             src="images/photo1.jpg"
-                            alt="Memory"
+                            alt="صورة من الذكريات"
                         >
-
-                        <div class="photo-overlay">
-
-                            <span id="photoCounter">
-                                1 / 4
-                            </span>
-
-                            <button
-                                id="fullscreenButton"
-                                aria-label="Fullscreen"
-                            >
-                                ⛶
-                            </button>
-
-                        </div>
 
                     </div>
 
 
                     <button
                         id="nextButton"
-                        class="gallery-arrow right"
+                        class="gallery-arrow next"
+                        type="button"
+                        aria-label="الصورة التالية"
                     >
-                        ›
+                        ❯
                     </button>
 
                 </div>
 
 
-                <div class="thumbnails">
+                <div
+                    id="galleryCounter"
+                    class="gallery-counter"
+                >
+                    1 / 4
+                </div>
 
-   <div class="thumbnails">
 
-    <button class="thumbnail active" data-index="0">
-        <img
-            src="رابط-الصورة-المباشر-هنا"
-            alt="Photo 1"
-        >
-    </button>
+                <div
+                    id="thumbnails"
+                    class="thumbnails"
+                ></div>
 
-    <button class="thumbnail" data-index="1">
-        <img
-            src="https://postimg.cc/PvdHyH2P"
-            alt="Photo 2"
-        >
-    </button>
 
-    <button class="thumbnail" data-index="2">
-        <img
-            src="https://postimg.cc/8NQZJ8QZ"
-            alt="Photo 3"
-        >
-    </button>
+                <p class="gallery-hint">
+                    اضغط على الصورة باش تكبرها
+                </p>
 
-    <button class="thumbnail" data-index="3">
-        <img
-            src="رابط-الصورة-الرابعة-هنا"
-            alt="Photo 4"
-        >
-    </button>
 
-</div>
+                <div class="final-message">
 
-</div>
+                    <span>❤️</span>
+
+                    <p>
+                        أجمل الأشياء هي الذكريات
+                        اللي كتبقى فالقلب.
+                    </p>
+
+                </div>
 
             </section>
 
 
-            <footer>
-                Made with
-                <b>♥</b>
-                by HAYTAM
-            </footer>
+            <!-- BACK -->
 
-        </div>
+            <button
+                id="backButton"
+                class="back-button"
+                type="button"
+            >
+                ← رجوع
+            </button>
+
+        </section>
 
     </main>
 
 
 
-    <!-- ==============================
+    <!-- =====================================
          LIGHTBOX
-    =============================== -->
+    ====================================== -->
+
     <div
         id="lightbox"
         class="lightbox"
+        aria-hidden="true"
     >
 
         <button
-            id="closeLightbox"
-            class="close-lightbox"
+            id="lightboxClose"
+            class="lightbox-close"
+            type="button"
+            aria-label="إغلاق"
         >
             ×
         </button>
 
+
         <button
             id="lightboxPrev"
-            class="lightbox-arrow left"
+            class="lightbox-arrow lightbox-prev"
+            type="button"
+            aria-label="الصورة السابقة"
         >
-            ‹
+            ❮
         </button>
+
 
         <img
             id="lightboxImage"
+            class="lightbox-image"
             src=""
-            alt="Fullscreen memory"
+            alt="صورة مكبرة"
         >
+
 
         <button
             id="lightboxNext"
-            class="lightbox-arrow right"
+            class="lightbox-arrow lightbox-next"
+            type="button"
+            aria-label="الصورة التالية"
         >
-            ›
+            ❯
         </button>
-
-        <div
-            id="lightboxCounter"
-            class="lightbox-counter"
-        >
-            1 / 4
-        </div>
 
     </div>
 
 
 
-    <!-- YouTube API -->
+    <!-- =====================================
+         YOUTUBE IFRAME API
+    ====================================== -->
+
     <script src="https://www.youtube.com/iframe_api"></script>
 
-    <!-- Main JS -->
+    <!-- MAIN JAVASCRIPT -->
+
     <script src="script.js"></script>
 
 </body>
+
 </html>
