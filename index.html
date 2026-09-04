@@ -1,377 +1,322 @@
-## `index.html`
-
-```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#090609">
-
-    <title>LOVE YOUI ❤️</title>
+    <title>HAYTAM + IMAN ❤️</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =====================================
-         YOUTUBE PLAYER
-    ====================================== -->
+    <!-- Floating Hearts -->
+    <div id="heartsContainer"></div>
 
+    <!-- YouTube Music -->
     <div id="youtubePlayer"></div>
 
-
-    <!-- =====================================
-         MUSIC BUTTON
-    ====================================== -->
-
-    <button
-        id="musicButton"
-        class="music-button"
-        type="button"
-        aria-label="تشغيل أو إيقاف الموسيقى"
-    >
-        🎵
-    </button>
-
-
-    <!-- =====================================
-         FLOATING HEARTS
-    ====================================== -->
-
-    <div id="floatingHearts"></div>
-
-
-    <!-- =====================================
+    <!-- =========================
          WELCOME PAGE
-    ====================================== -->
-
+    ========================== -->
     <main id="welcomePage" class="page active">
-
-        <div class="background-glow"></div>
 
         <section class="welcome-content">
 
-            <div class="top-label">
-                ✦ رسالة صغيرة ✦
+            <div class="heart-area">
+
+                <svg class="heart-svg"
+                     viewBox="0 0 300 280"
+                     xmlns="http://www.w3.org/2000/svg">
+
+                    <path
+                        class="heart-path"
+                        d="M150 250
+                           C130 230 35 175 35 95
+                           C35 40 105 20 150 75
+                           C195 20 265 40 265 95
+                           C265 175 170 230 150 250Z">
+                    </path>
+
+                    <path
+                        class="heart-fill"
+                        d="M150 250
+                           C130 230 35 175 35 95
+                           C35 40 105 20 150 75
+                           C195 20 265 40 265 95
+                           C265 175 170 230 150 250Z">
+                    </path>
+
+                    <foreignObject
+                        x="55"
+                        y="105"
+                        width="190"
+                        height="80">
+
+                        <div class="heart-content">
+                            <div class="names">
+                                HAYTAM + IMAN
+                            </div>
+
+                            <div class="heart-symbol">
+                                ❤️
+                            </div>
+                        </div>
+
+                    </foreignObject>
+
+                </svg>
+
             </div>
 
-
-            <!-- HEART -->
-
-            <div class="heart-container">
-
-                <div class="heart">
-                    <div class="heart-shine"></div>
-                </div>
-
-                <div class="names">
-
-                    <span>حيتام</span>
-
-                    <strong>+</strong>
-
-                    <span>إيمان</span>
-
-                </div>
-
-            </div>
-
-
-            <h1>
-                عندي ليك مفاجأة ❤️
-            </h1>
-
-
-            <p class="hint">
-                ضغط على البصمة باش تفتح الهدية
+            <p class="welcome-text">
+                عندي ليك واحد المفاجأة ❤️
             </p>
 
-
-            <!-- FINGERPRINT -->
-
-            <button
-                id="fingerprintButton"
-                class="fingerprint-button"
-                type="button"
-                aria-label="فتح الهدية"
-            >
-
-                <div class="fingerprint">
-
-                    <i></i>
-                    <i></i>
-                    <i></i>
-
-                </div>
-
+            <button id="fingerprintButton" class="fingerprint-button">
+                <span class="fingerprint-icon">☝️</span>
+                <span>اضغط هنا</span>
             </button>
-
-
-            <p id="fingerprintText">
-                اضغط هنا
-            </p>
 
         </section>
 
     </main>
 
 
-
-    <!-- =====================================
+    <!-- =========================
          GIFT PAGE
-    ====================================== -->
-
+    ========================== -->
     <main id="giftPage" class="page">
-
-        <div class="gift-background"></div>
 
         <section class="gift-content">
 
-            <div class="gift-label">
-                ✦ مفاجأة خاصة ✦
+            <div class="music-control">
+                <button id="musicButton" aria-label="Music">
+                    🔇
+                </button>
             </div>
 
-
-            <h2>
-                هدية 🎁
-            </h2>
-
-
-            <!-- GIFT BOX -->
-
-            <button
-                id="giftBox"
-                class="gift-box"
-                type="button"
-                aria-label="فتح الهدية"
-            >
-
-                <div class="box-shadow"></div>
-
-                <div class="gift-lid">
-
-                    <div class="ribbon-horizontal"></div>
-
-                </div>
-
-                <div class="gift-body">
-
-                    <div class="ribbon-vertical"></div>
-
-                </div>
-
-                <div class="bow">
-
-                    <div class="bow-left"></div>
-
-                    <div class="bow-right"></div>
-
-                    <div class="bow-center"></div>
-
-                </div>
-
-            </button>
-
-
-            <!-- GIFT MESSAGE -->
-
-            <div
-                id="giftMessage"
-                class="gift-message"
-            >
-
-                <h3>
-                    عندي ليك هاد الرسالة ❤️
-                </h3>
-
-                <p>
-                    بعض الأشخاص كيدخلو لحياتنا
-                    وكيخليو فيها واحد الأثر الجميل...
-                    وهدي غير حاجة صغيرة باش نقول:
-                    <br>
-
-                    <strong>
-                        شكراً لأنك شخص مميز.
-                    </strong>
-                </p>
-
+            <div class="gift-title">
+                <span>🎁</span>
+                <h1>هدية ليك</h1>
+                <span>❤️</span>
             </div>
 
+            <p class="gift-subtitle">
+                افتحي الهدية باش تشوفي المفاجأة
+            </p>
 
 
-            <!-- =================================
-                 GALLERY
-            ================================== -->
+            <!-- Gift Box -->
+            <div id="giftBox" class="gift-box-container">
 
-            <section class="gallery-section">
+                <div class="gift-box">
 
-                <div class="gallery-header">
-
-                    <span>
-                        ✦ ذكريات ✦
-                    </span>
-
-                    <h3>
-                        صور خاصة ❤️
-                    </h3>
-
-                </div>
-
-
-                <div class="gallery">
-
-                    <button
-                        id="prevButton"
-                        class="gallery-arrow prev"
-                        type="button"
-                        aria-label="الصورة السابقة"
-                    >
-                        ❮
-                    </button>
-
-
-                    <div class="main-image-wrapper">
-
-                        <img
-                            id="mainImage"
-                            class="main-image"
-                            src="images/photo1.jpg"
-                            alt="صورة من الذكريات"
-                        >
-
+                    <div class="gift-lid">
+                        <div class="ribbon-horizontal"></div>
                     </div>
 
+                    <div class="gift-body">
+                        <div class="ribbon-vertical"></div>
+                    </div>
 
-                    <button
-                        id="nextButton"
-                        class="gallery-arrow next"
-                        type="button"
-                        aria-label="الصورة التالية"
-                    >
-                        ❯
-                    </button>
+                    <div class="gift-bow">
+                        <span></span>
+                        <span></span>
+                    </div>
 
                 </div>
 
-
-                <div
-                    id="galleryCounter"
-                    class="gallery-counter"
-                >
-                    1 / 4
-                </div>
+            </div>
 
 
-                <div
-                    id="thumbnails"
-                    class="thumbnails"
-                ></div>
+            <!-- Message -->
+            <section id="messageSection" class="message-section">
 
+                <div class="message-card">
 
-                <p class="gallery-hint">
-                    اضغط على الصورة باش تكبرها
-                </p>
+                    <div class="message-heart">
+                        ❤️
+                    </div>
 
-
-                <div class="final-message">
-
-                    <span>❤️</span>
+                    <h2>
+                        إلى إيمان
+                    </h2>
 
                     <p>
-                        أجمل الأشياء هي الذكريات
-                        اللي كتبقى فالقلب.
+                        وجودك فحياتي حاجة مميزة بزاف،
+                        وكل لحظة معاك عندها معنى خاص.
+                        بغيت غير نقول ليك بأنك شخص غالي
+                        وعزيز على قلبي. ❤️
                     </p>
+
+                    <div class="message-signature">
+                        HAYTAM ❤️
+                    </div>
 
                 </div>
 
             </section>
 
 
-            <!-- BACK -->
+            <!-- =========================
+                 GALLERY
+            ========================== -->
+            <section class="gallery-section">
 
-            <button
-                id="backButton"
-                class="back-button"
-                type="button"
-            >
-                ← رجوع
-            </button>
+                <div class="section-title">
+                    <span>📸</span>
+                    <h2>ذكرياتنا</h2>
+                    <span>❤️</span>
+                </div>
+
+                <div class="gallery">
+
+                    <button
+                        id="prevButton"
+                        class="gallery-arrow left"
+                        aria-label="Previous">
+                        ‹
+                    </button>
+
+
+                    <div class="main-photo-wrapper">
+
+                        <img
+                            id="mainPhoto"
+                            src="https://i.postimg.cc/PLACEHOLDER/photo1.jpg"
+                            alt="Memory">
+
+                        <button
+                            id="fullscreenButton"
+                            class="fullscreen-button">
+                            ⛶
+                        </button>
+
+                    </div>
+
+
+                    <button
+                        id="nextButton"
+                        class="gallery-arrow right"
+                        aria-label="Next">
+                        ›
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="photoCounter"
+                    class="photo-counter">
+                    1 / 4
+                </div>
+
+
+                <div class="thumbnails">
+
+                    <button
+                        class="thumbnail active"
+                        data-index="0">
+
+                        <img
+                            src="https://i.postimg.cc/PLACEHOLDER/photo1.jpg"
+                            alt="Photo 1">
+
+                    </button>
+
+
+                    <button
+                        class="thumbnail"
+                        data-index="1">
+
+                        <img
+                            src="https://i.postimg.cc/PLACEHOLDER/photo2.jpg"
+                            alt="Photo 2">
+
+                    </button>
+
+
+                    <button
+                        class="thumbnail"
+                        data-index="2">
+
+                        <img
+                            src="https://i.postimg.cc/PLACEHOLDER/photo3.jpg"
+                            alt="Photo 3">
+
+                    </button>
+
+
+                    <button
+                        class="thumbnail"
+                        data-index="3">
+
+                        <img
+                            src="https://i.postimg.cc/PLACEHOLDER/photo4.jpg"
+                            alt="Photo 4">
+
+                    </button>
+
+                </div>
+
+            </section>
 
         </section>
 
     </main>
 
 
-
-    <!-- =====================================
+    <!-- =========================
          LIGHTBOX
-    ====================================== -->
-
-    <div
-        id="lightbox"
-        class="lightbox"
-        aria-hidden="true"
-    >
+    ========================== -->
+    <div id="lightbox" class="lightbox">
 
         <button
-            id="lightboxClose"
-            class="lightbox-close"
-            type="button"
-            aria-label="إغلاق"
-        >
+            id="closeLightbox"
+            class="close-lightbox">
             ×
         </button>
 
 
         <button
             id="lightboxPrev"
-            class="lightbox-arrow lightbox-prev"
-            type="button"
-            aria-label="الصورة السابقة"
-        >
-            ❮
+            class="lightbox-arrow lightbox-left">
+            ‹
         </button>
 
 
-        <img
-            id="lightboxImage"
-            class="lightbox-image"
-            src=""
-            alt="صورة مكبرة"
-        >
+        <div class="lightbox-content">
+
+            <img
+                id="lightboxImage"
+                src=""
+                alt="Fullscreen memory">
+
+            <div
+                id="lightboxCounter"
+                class="lightbox-counter">
+                1 / 4
+            </div>
+
+        </div>
 
 
         <button
             id="lightboxNext"
-            class="lightbox-arrow lightbox-next"
-            type="button"
-            aria-label="الصورة التالية"
-        >
-            ❯
+            class="lightbox-arrow lightbox-right">
+            ›
         </button>
 
     </div>
 
 
-
-    <!-- =====================================
-         YOUTUBE IFRAME API
-    ====================================== -->
-
+    <!-- YouTube API -->
     <script src="https://www.youtube.com/iframe_api"></script>
 
-    <!-- MAIN JAVASCRIPT -->
-
+    <!-- Main JS -->
     <script src="script.js"></script>
 
 </body>
-
 </html>

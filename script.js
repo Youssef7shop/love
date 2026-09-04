@@ -16,8 +16,11 @@ const YOUTUBE_VIDEO_ID = "crRuPbc3Rdo";
    ELEMENTS
 ===================================================== */
 
-const welcomePage = document.getElementById("welcomePage");
-const giftPage = document.getElementById("giftPage");
+const welcomePage =
+    document.getElementById("welcomePage");
+
+const giftPage =
+    document.getElementById("giftPage");
 
 const fingerprintButton =
     document.getElementById("fingerprintButton");
@@ -91,8 +94,8 @@ window.onYouTubeIframeAPIReady = function () {
     youtubePlayer = new YT.Player(
         "youtubePlayer",
         {
-            height: "1",
-            width: "1",
+            height: "200",
+            width: "200",
 
             videoId: YOUTUBE_VIDEO_ID,
 
@@ -169,12 +172,7 @@ window.onYouTubeIframeAPIReady = function () {
                         YT.PlayerState.ENDED
                     ) {
 
-                        /*
-                           Backup loop.
-                        */
-
                         event.target.seekTo(0);
-
                         event.target.playVideo();
                     }
                 },
@@ -281,7 +279,6 @@ if (fingerprintButton) {
         function () {
 
             /*
-               IMPORTANT:
                Music starts directly from
                the user's fingerprint click.
             */
@@ -358,6 +355,7 @@ if (musicButton) {
             } else {
 
                 playMusic();
+
             }
         }
     );
@@ -418,10 +416,15 @@ if (giftBox) {
 ===================================================== */
 
 const photos = [
-    "images/photo1.jpg",
-    "images/photo2.jpg",
-    "images/photo3.jpg",
-    "images/photo4.jpg"
+
+    "https://i.postimg.cc/PLACEHOLDER/photo1.jpg",
+
+    "https://i.postimg.cc/PLACEHOLDER/photo2.jpg",
+
+    "https://i.postimg.cc/PLACEHOLDER/photo3.jpg",
+
+    "https://i.postimg.cc/PLACEHOLDER/photo4.jpg"
+
 ];
 
 let currentPhoto = 0;
@@ -485,6 +488,7 @@ function updateGallery(index) {
                 "active",
                 index === currentPhoto
             );
+
         }
     );
 }
@@ -503,6 +507,7 @@ if (nextButton) {
             updateGallery(
                 currentPhoto + 1
             );
+
         }
     );
 }
@@ -521,6 +526,7 @@ if (prevButton) {
             updateGallery(
                 currentPhoto - 1
             );
+
         }
     );
 }
@@ -543,8 +549,10 @@ thumbnails.forEach(
                     );
 
                 updateGallery(index);
+
             }
         );
+
     }
 );
 
@@ -559,7 +567,6 @@ function openLightbox() {
         return;
     }
 
-
     lightboxImage.src =
         photos[currentPhoto];
 
@@ -568,8 +575,8 @@ function openLightbox() {
 
         lightboxCounter.textContent =
             `${currentPhoto + 1} / ${photos.length}`;
-    }
 
+    }
 
     lightbox.classList.add("open");
 
@@ -614,6 +621,7 @@ function updateLightbox(index) {
 
         lightboxImage.src =
             photos[currentPhoto];
+
     }
 
 
@@ -621,6 +629,7 @@ function updateLightbox(index) {
 
         lightboxCounter.textContent =
             `${currentPhoto + 1} / ${photos.length}`;
+
     }
 
 
@@ -641,6 +650,7 @@ if (fullscreenButton) {
             event.stopPropagation();
 
             openLightbox();
+
         }
     );
 }
@@ -657,6 +667,7 @@ if (mainPhoto) {
         function () {
 
             openLightbox();
+
         }
     );
 }
@@ -684,6 +695,7 @@ if (lightboxPrev) {
             updateLightbox(
                 currentPhoto - 1
             );
+
         }
     );
 }
@@ -698,6 +710,7 @@ if (lightboxNext) {
             updateLightbox(
                 currentPhoto + 1
             );
+
         }
     );
 }
@@ -718,7 +731,9 @@ if (lightbox) {
             ) {
 
                 closeLightboxFunction();
+
             }
+
         }
     );
 }
@@ -743,6 +758,7 @@ document.addEventListener(
         if (event.key === "Escape") {
 
             closeLightboxFunction();
+
         }
 
 
@@ -751,6 +767,7 @@ document.addEventListener(
             updateLightbox(
                 currentPhoto + 1
             );
+
         }
 
 
@@ -759,7 +776,9 @@ document.addEventListener(
             updateLightbox(
                 currentPhoto - 1
             );
+
         }
+
     }
 );
 
@@ -780,6 +799,7 @@ if (lightbox) {
 
             touchStartX =
                 event.changedTouches[0].screenX;
+
         },
         {
             passive: true
@@ -795,6 +815,7 @@ if (lightbox) {
                 event.changedTouches[0].screenX;
 
             handleSwipe();
+
         },
         {
             passive: true
@@ -825,6 +846,7 @@ function handleSwipe() {
         updateLightbox(
             currentPhoto - 1
         );
+
     }
 }
 
@@ -844,6 +866,7 @@ if (mainPhoto) {
 
             galleryStartX =
                 event.changedTouches[0].screenX;
+
         },
         {
             passive: true
@@ -879,7 +902,9 @@ if (mainPhoto) {
                 updateGallery(
                     currentPhoto - 1
                 );
+
             }
+
         },
         {
             passive: true
@@ -971,6 +996,7 @@ function createHeartBurst() {
             createFloatingHeart,
             i * 100
         );
+
     }
 }
 
@@ -996,6 +1022,7 @@ photos.forEach(
             new Image();
 
         image.src = src;
+
     }
 );
 
@@ -1011,19 +1038,13 @@ updateGallery(0);
    HEART DRAWING SUPPORT
 ===================================================== */
 
-/*
-   If your HTML/CSS uses a class called
-   .heart-svg or .heart-path, this code
-   automatically adds the drawing class
-   after the page loads.
-*/
-
 const heartPath =
     document.querySelector(".heart-path");
 
 if (heartPath) {
 
     heartPath.classList.add("draw-heart");
+
 }
 
 
@@ -1034,13 +1055,7 @@ if (heartPath) {
 const heartNames =
     document.querySelector(".heart-content");
 
-
 if (heartNames) {
-
-    /*
-       Wait for the heart drawing
-       before revealing the names.
-    */
 
     heartNames.classList.add("hidden-name");
 
@@ -1068,7 +1083,6 @@ if (heartNames) {
 
 const animatedHeart =
     document.querySelector(".heart");
-
 
 if (animatedHeart) {
 
