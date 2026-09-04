@@ -9,7 +9,7 @@
 ===================================================== */
 
 // Cheb Bilal - Mi Amour
-const YOUTUBE_VIDEO_ID = "crRuPbc3Rdo&list=RDcrRuPbc3Rdo&start_radio=1";
+const YOUTUBE_VIDEO_ID = "crRuPbc3Rdo&list";
 
 
 /* =====================================================
