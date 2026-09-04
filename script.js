@@ -418,10 +418,10 @@ if (giftBox) {
 ===================================================== */
 
 const photos = [
-    "images/photo1.jpg",
-    "images/photo2.jpg",
-    "images/photo3.jpg",
-    "images/photo4.jpg"
+    "https://postimg.cc/PvdHyH2P/image.jpg",
+    "https://postimg.cc/8NQZJ8QZ/image.jpg",
+    "https://postimg.cc/8NQZJ8QZ/image.jpg",
+    "https://postimg.cc/8NQZJ8QZ/image.jpg"
 ];
 
 let currentPhoto = 0;
