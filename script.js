@@ -16,11 +16,8 @@ const YOUTUBE_VIDEO_ID = "crRuPbc3Rdo";
    ELEMENTS
 ===================================================== */
 
-const welcomePage =
-    document.getElementById("welcomePage");
-
-const giftPage =
-    document.getElementById("giftPage");
+const welcomePage = document.getElementById("welcomePage");
+const giftPage = document.getElementById("giftPage");
 
 const fingerprintButton =
     document.getElementById("fingerprintButton");
@@ -94,13 +91,17 @@ window.onYouTubeIframeAPIReady = function () {
     youtubePlayer = new YT.Player(
         "youtubePlayer",
         {
+            /*
+               YouTube requires the embedded player
+               to have a viewport of at least 200x200.
+            */
             height: "200",
             width: "200",
 
             videoId: YOUTUBE_VIDEO_ID,
 
             playerVars: {
-                autoplay: 0,
+                autoplay: 1,
                 controls: 0,
                 loop: 1,
                 playlist: YOUTUBE_VIDEO_ID,
@@ -119,14 +120,24 @@ window.onYouTubeIframeAPIReady = function () {
 
                     youtubeReady = true;
 
+                    event.target.unMute();
                     event.target.setVolume(45);
 
                     /*
-                       If fingerprint was clicked
-                       before YouTube finished loading,
-                       start music now.
+                       Try to start automatically.
                     */
+                    try {
+                        event.target.playVideo();
+                    } catch (error) {
+                        console.log(
+                            "Autoplay waiting for user interaction."
+                        );
+                    }
 
+                    /*
+                       If the user interacted before
+                       YouTube finished loading, start music now.
+                    */
                     if (musicRequested) {
                         playMusic();
                     }
@@ -171,6 +182,10 @@ window.onYouTubeIframeAPIReady = function () {
                         event.data ===
                         YT.PlayerState.ENDED
                     ) {
+
+                        /*
+                           Backup loop.
+                        */
 
                         event.target.seekTo(0);
                         event.target.playVideo();
@@ -269,6 +284,91 @@ function pauseMusic() {
 
 
 /* =====================================================
+   AUTOMATIC MUSIC START
+===================================================== */
+
+/*
+   Try to start music automatically as soon
+   as the page is loaded.
+*/
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        musicRequested = true;
+
+        if (youtubeReady && youtubePlayer) {
+            playMusic();
+        }
+    }
+);
+
+
+/*
+   Modern browsers may block autoplay with sound.
+
+   In that case, the first click/touch anywhere
+   on the page will start the music automatically.
+*/
+
+function startMusicAfterInteraction() {
+
+    if (!youtubePlayer || !youtubeReady) {
+        musicRequested = true;
+        return;
+    }
+
+    if (musicPlaying) {
+        return;
+    }
+
+    try {
+
+        musicRequested = true;
+
+        youtubePlayer.unMute();
+        youtubePlayer.setVolume(45);
+        youtubePlayer.playVideo();
+
+    } catch (error) {
+
+        console.log(
+            "Music waiting for browser permission."
+        );
+    }
+}
+
+
+/*
+   First click anywhere.
+*/
+
+document.addEventListener(
+    "click",
+    startMusicAfterInteraction,
+    {
+        once: true,
+        passive: true
+    }
+);
+
+
+/*
+   First touch anywhere on mobile.
+*/
+
+document.addEventListener(
+    "touchstart",
+    startMusicAfterInteraction,
+    {
+        once: true,
+        passive: true
+    }
+);
+
+
+/* =====================================================
    FINGERPRINT
 ===================================================== */
 
@@ -336,7 +436,15 @@ if (musicButton) {
 
     musicButton.addEventListener(
         "click",
-        function () {
+        function (event) {
+
+            /*
+               Prevent this click from being treated
+               as a generic autoplay-start click.
+            */
+
+            event.stopPropagation();
+
 
             if (!youtubeReady) {
 
@@ -355,7 +463,6 @@ if (musicButton) {
             } else {
 
                 playMusic();
-
             }
         }
     );
@@ -402,7 +509,6 @@ if (giftBox) {
                 if (messageSection) {
 
                     messageSection.classList.add("show");
-
                 }
 
             }, 650);
@@ -417,13 +523,13 @@ if (giftBox) {
 
 const photos = [
 
-    "https://i.postimg.cc/PLACEHOLDER/photo1.jpg",
+    "https://i.postimg.cc/Hng9yC88/A0CC6B75-902C-499F-A4D5-A922D40D7865.png",
 
-    "https://i.postimg.cc/PLACEHOLDER/photo2.jpg",
+    "https://i.postimg.cc/mDQQR6ps/84d3a351-5866-4c89-b44b-b87057545a0e.jpg",
 
-    "https://i.postimg.cc/PLACEHOLDER/photo3.jpg",
+    "https://i.postimg.cc/JzGZthYN/BD7D9284-3B39-475B-AD5F-3F2F720456EE.png",
 
-    "https://i.postimg.cc/PLACEHOLDER/photo4.jpg"
+    "https://i.postimg.cc/dVkZwxDx/dc290659-d99b-420b-b778-07ac76f30a89.jpg"
 
 ];
 
@@ -488,7 +594,6 @@ function updateGallery(index) {
                 "active",
                 index === currentPhoto
             );
-
         }
     );
 }
@@ -507,7 +612,6 @@ if (nextButton) {
             updateGallery(
                 currentPhoto + 1
             );
-
         }
     );
 }
@@ -526,7 +630,6 @@ if (prevButton) {
             updateGallery(
                 currentPhoto - 1
             );
-
         }
     );
 }
@@ -549,10 +652,8 @@ thumbnails.forEach(
                     );
 
                 updateGallery(index);
-
             }
         );
-
     }
 );
 
@@ -567,6 +668,7 @@ function openLightbox() {
         return;
     }
 
+
     lightboxImage.src =
         photos[currentPhoto];
 
@@ -575,8 +677,8 @@ function openLightbox() {
 
         lightboxCounter.textContent =
             `${currentPhoto + 1} / ${photos.length}`;
-
     }
+
 
     lightbox.classList.add("open");
 
@@ -621,7 +723,6 @@ function updateLightbox(index) {
 
         lightboxImage.src =
             photos[currentPhoto];
-
     }
 
 
@@ -629,7 +730,6 @@ function updateLightbox(index) {
 
         lightboxCounter.textContent =
             `${currentPhoto + 1} / ${photos.length}`;
-
     }
 
 
@@ -650,7 +750,6 @@ if (fullscreenButton) {
             event.stopPropagation();
 
             openLightbox();
-
         }
     );
 }
@@ -667,7 +766,6 @@ if (mainPhoto) {
         function () {
 
             openLightbox();
-
         }
     );
 }
@@ -695,7 +793,6 @@ if (lightboxPrev) {
             updateLightbox(
                 currentPhoto - 1
             );
-
         }
     );
 }
@@ -710,7 +807,6 @@ if (lightboxNext) {
             updateLightbox(
                 currentPhoto + 1
             );
-
         }
     );
 }
@@ -731,9 +827,7 @@ if (lightbox) {
             ) {
 
                 closeLightboxFunction();
-
             }
-
         }
     );
 }
@@ -758,7 +852,6 @@ document.addEventListener(
         if (event.key === "Escape") {
 
             closeLightboxFunction();
-
         }
 
 
@@ -767,7 +860,6 @@ document.addEventListener(
             updateLightbox(
                 currentPhoto + 1
             );
-
         }
 
 
@@ -776,9 +868,7 @@ document.addEventListener(
             updateLightbox(
                 currentPhoto - 1
             );
-
         }
-
     }
 );
 
@@ -846,7 +936,6 @@ function handleSwipe() {
         updateLightbox(
             currentPhoto - 1
         );
-
     }
 }
 
@@ -902,7 +991,6 @@ if (mainPhoto) {
                 updateGallery(
                     currentPhoto - 1
                 );
-
             }
 
         },
@@ -996,7 +1084,6 @@ function createHeartBurst() {
             createFloatingHeart,
             i * 100
         );
-
     }
 }
 
@@ -1022,78 +1109,5 @@ photos.forEach(
             new Image();
 
         image.src = src;
-
     }
 );
-
-
-/* =====================================================
-   INITIALIZE
-===================================================== */
-
-updateGallery(0);
-
-
-/* =====================================================
-   HEART DRAWING SUPPORT
-===================================================== */
-
-const heartPath =
-    document.querySelector(".heart-path");
-
-if (heartPath) {
-
-    heartPath.classList.add("draw-heart");
-
-}
-
-
-/* =====================================================
-   NAME REVEAL
-===================================================== */
-
-const heartNames =
-    document.querySelector(".heart-content");
-
-if (heartNames) {
-
-    heartNames.classList.add("hidden-name");
-
-
-    setTimeout(
-        function () {
-
-            heartNames.classList.remove(
-                "hidden-name"
-            );
-
-            heartNames.classList.add(
-                "show-name"
-            );
-
-        },
-        2500
-    );
-}
-
-
-/* =====================================================
-   HEART PULSE AFTER DRAWING
-===================================================== */
-
-const animatedHeart =
-    document.querySelector(".heart");
-
-if (animatedHeart) {
-
-    setTimeout(
-        function () {
-
-            animatedHeart.classList.add(
-                "finished"
-            );
-
-        },
-        2500
-    );
-}
